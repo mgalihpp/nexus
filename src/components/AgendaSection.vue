@@ -6,7 +6,34 @@
  * the left, session title + description on the right. The Mark.png graphic
  * bleeds out of the card's lower-left corner, and the CTA sits bottom-right.
  */
+import { ref } from 'vue'
 import CtaButton from './CtaButton.vue'
+import { useGsap } from '@/composables/useGsap'
+import { gsap } from '@/lib/gsap'
+
+const section = ref<HTMLElement | null>(null)
+
+useGsap(section, () => {
+  // Subtle scrubbed parallax on the Mark graphic. Symmetric fromTo so the
+  // drift passes through 0 when the card sits mid-viewport — at reading
+  // position the graphic rests exactly where the design places it, and the
+  // card-edge clipping never exceeds the intended bleed.
+  gsap.fromTo(
+    '.agenda-mark',
+    { yPercent: 8, rotation: -6 },
+    {
+      yPercent: -8,
+      rotation: 6,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.agenda-card',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      },
+    },
+  )
+})
 
 interface AgendaItem {
   day: string
@@ -41,9 +68,9 @@ const items: AgendaItem[] = [
 </script>
 
 <template>
-  <section id="schedule" class="pb-16 lg:pb-24">
+  <section id="schedule" ref="section" class="pb-16 lg:pb-24">
     <!-- Heading row: oversized title left, small event meta right. -->
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+    <div v-reveal class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
       <h2
         class="text-5xl font-bold uppercase leading-none tracking-tight text-ink sm:text-6xl lg:text-[4.5rem]"
       >
@@ -56,19 +83,24 @@ const items: AgendaItem[] = [
 
     <!-- Schedule card -->
     <div
-      class="relative mt-10 overflow-hidden rounded-4xl bg-surface px-6 py-12 sm:px-10 lg:mt-12 lg:px-14 lg:py-25"
+      class="agenda-card relative mt-10 overflow-hidden rounded-4xl bg-surface px-6 py-12 sm:px-10 lg:mt-12 lg:px-14 lg:py-25"
     >
       <!-- Decorative Mark graphic bleeding out of the lower-left corner. -->
       <img
         src="/Mark.png"
         alt=""
         aria-hidden="true"
-        class="pointer-events-none absolute -bottom-8 -left-0 h-48 w-48 object-contain sm:h-56 sm:w-56 lg:h-70 lg:w-70"
+        class="agenda-mark pointer-events-none absolute -bottom-8 -left-0 h-48 w-48 object-contain will-change-transform sm:h-56 sm:w-56 lg:h-70 lg:w-70"
       />
 
       <div class="relative z-10 flex flex-col gap-14 lg:gap-20">
         <!-- One row per day: 2-col grid on lg, stacked on mobile. -->
-        <div v-for="item in items" :key="item.day" class="grid gap-4 lg:grid-cols-2 lg:gap-10">
+        <div
+          v-for="item in items"
+          :key="item.day"
+          v-reveal="{ y: 50 }"
+          class="grid gap-4 lg:grid-cols-2 lg:gap-10"
+        >
           <div class="text-2xl font-bold text-ink sm:text-[1.75rem]">
             <p>{{ item.day }}</p>
             <p class="mt-1">{{ item.time }}</p>

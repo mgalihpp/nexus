@@ -30,7 +30,7 @@ const cells: Cell[] = [
 <template>
   <section id="speakers-list" class="pb-16 lg:pb-24">
     <!-- Heading row: big two-line title left, small blurb top-right. -->
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+    <div v-reveal class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
       <h2
         class="text-5xl font-bold uppercase leading-[1.15] tracking-tight text-ink sm:text-6xl lg:text-[4.5rem]"
       >
@@ -43,7 +43,10 @@ const cells: Cell[] = [
     </div>
 
     <!-- Speaker grid: 2 cols on mobile, 4 on lg. Tall rounded cells. -->
-    <div class="mt-10 grid grid-cols-2 gap-4 lg:mt-14 lg:grid-cols-4 lg:gap-5">
+    <div
+      v-reveal.stagger="{ y: 50, stagger: 0.08 }"
+      class="mt-10 grid grid-cols-2 gap-4 lg:mt-14 lg:grid-cols-4 lg:gap-5"
+    >
       <template v-for="(cell, i) in cells" :key="i">
         <!-- Light info card: name pinned top, role pinned bottom. -->
         <div
@@ -62,7 +65,7 @@ const cells: Cell[] = [
           :src="cell.src"
           alt=""
           aria-hidden="true"
-          class="aspect-10/14 w-full rounded-3xl object-cover grayscale"
+          class="aspect-10/14 w-full rounded-3xl object-cover grayscale transition-[filter,transform] duration-500 hover:scale-[1.02] hover:grayscale-0"
         />
       </template>
     </div>

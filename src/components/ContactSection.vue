@@ -27,11 +27,13 @@ const fields = [
 <template>
   <section id="contact" class="pb-16 lg:pb-24">
     <!-- Whole section lives on one big rounded card, slightly lighter than the canvas. -->
-    <div class="rounded-4xl bg-[#1e1f21] p-6 sm:p-10 lg:p-16">
+    <div v-reveal="{ y: 60 }" class="rounded-4xl bg-[#1e1f21] p-6 sm:p-10 lg:p-16">
       <div class="grid gap-10 lg:grid-cols-[1fr_1.05fr] lg:gap-16">
         <!-- LEFT: heading + blurb + info grid -->
         <div>
-          <h2 class="text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]">
+          <h2
+            class="text-3xl font-bold leading-tight tracking-tight text-ink sm:text-4xl lg:text-[2.75rem]"
+          >
             We're Here To<br />
             Connect And<br />
             Assist You
@@ -45,7 +47,11 @@ const fields = [
           <div class="mt-12 grid grid-cols-2 gap-x-8 gap-y-10">
             <div v-for="b in infoBlocks" :key="b.label">
               <h3 class="text-sm font-bold uppercase tracking-[0.15em] text-ink">{{ b.label }}</h3>
-              <p v-for="line in b.lines" :key="line" class="mt-3 text-xs leading-relaxed text-muted sm:text-sm">
+              <p
+                v-for="line in b.lines"
+                :key="line"
+                class="mt-3 text-xs leading-relaxed text-muted sm:text-sm"
+              >
                 {{ line }}
               </p>
             </div>
@@ -57,18 +63,29 @@ const fields = [
                 <!-- Facebook -->
                 <a href="#" aria-label="Facebook" class="transition-opacity hover:opacity-70">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.7c0-.9.3-1.6 1.6-1.6h1.7V3.2c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.5V13h2.6v8h3.4z" />
+                    <path
+                      d="M13.5 21v-8h2.7l.4-3.2h-3.1V7.7c0-.9.3-1.6 1.6-1.6h1.7V3.2c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.5V13h2.6v8h3.4z"
+                    />
                   </svg>
                 </a>
                 <!-- LinkedIn -->
                 <a href="#" aria-label="LinkedIn" class="transition-opacity hover:opacity-70">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9z" />
+                    <path
+                      d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.5c0-1.3 0-3-1.9-3s-2.2 1.4-2.2 2.9V21H9z"
+                    />
                   </svg>
                 </a>
                 <!-- Instagram -->
                 <a href="#" aria-label="Instagram" class="transition-opacity hover:opacity-70">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
                     <rect x="3" y="3" width="18" height="18" rx="5" />
                     <circle cx="12" cy="12" r="4" />
                     <circle cx="17.2" cy="6.8" r="1" fill="currentColor" stroke="none" />
@@ -77,7 +94,9 @@ const fields = [
                 <!-- YouTube -->
                 <a href="#" aria-label="YouTube" class="transition-opacity hover:opacity-70">
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M23 12s0-3.8-.5-5.5c-.3-1-1-1.7-2-2C18.8 4 12 4 12 4s-6.8 0-8.5.5c-1 .3-1.7 1-2 2C1 8.2 1 12 1 12s0 3.8.5 5.5c.3 1 1 1.7 2 2 1.7.5 8.5.5 8.5.5s6.8 0 8.5-.5c-1 0 1.7-1 2-2 .5-1.7.5-5.5.5-5.5zM9.8 15.5v-7l6 3.5-6 3.5z" />
+                    <path
+                      d="M23 12s0-3.8-.5-5.5c-.3-1-1-1.7-2-2C18.8 4 12 4 12 4s-6.8 0-8.5.5c-1 .3-1.7 1-2 2C1 8.2 1 12 1 12s0 3.8.5 5.5c.3 1 1 1.7 2 2 1.7.5 8.5.5 8.5.5s6.8 0 8.5-.5c-1 0 1.7-1 2-2 .5-1.7.5-5.5.5-5.5zM9.8 15.5v-7l6 3.5-6 3.5z"
+                    />
                   </svg>
                 </a>
               </div>
@@ -86,10 +105,7 @@ const fields = [
         </div>
 
         <!-- RIGHT: light form card -->
-        <form
-          class="flex flex-col rounded-3xl bg-[#e9eaec] p-6 sm:p-9"
-          @submit.prevent
-        >
+        <form class="flex flex-col rounded-3xl bg-[#e9eaec] p-6 sm:p-9" @submit.prevent>
           <h3 class="text-lg font-bold uppercase tracking-[0.15em] text-[#101113] sm:text-xl">
             Get in touch
           </h3>

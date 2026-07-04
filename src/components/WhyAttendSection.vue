@@ -46,7 +46,7 @@ const reasons: Reason[] = [
 <template>
   <section id="why" class="pb-16 lg:pb-24">
     <!-- Heading row: oversized title left, three-line blurb right. -->
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+    <div v-reveal class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
       <h2
         class="text-5xl font-bold uppercase leading-none tracking-tight text-ink sm:text-6xl lg:text-[4.5rem]"
       >
@@ -59,7 +59,10 @@ const reasons: Reason[] = [
     </div>
 
     <!-- 2x2 card grid -->
-    <div class="mt-10 grid gap-5 lg:mt-14 lg:grid-cols-2">
+    <div
+      v-reveal.stagger="{ y: 60, stagger: 0.12 }"
+      class="mt-10 grid gap-5 lg:mt-14 lg:grid-cols-2"
+    >
       <article
         v-for="r in reasons"
         :key="r.num"

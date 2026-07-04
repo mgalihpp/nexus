@@ -22,6 +22,7 @@ const logos: Logo[] = [
 <template>
   <!-- Evenly distributed across the frame; wraps to a centred cluster on mobile. -->
   <div
+    v-reveal.stagger="{ y: 24, stagger: 0.08 }"
     class="flex flex-wrap items-center justify-center gap-x-12 gap-y-6 py-10 sm:justify-between sm:gap-x-8 lg:py-14"
   >
     <img

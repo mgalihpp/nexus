@@ -6,6 +6,31 @@
  * and the blue starburst mark bleeding off the card's right edge.
  */
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { useGsap } from '@/composables/useGsap'
+import { gsap } from '@/lib/gsap'
+
+const section = ref<HTMLElement | null>(null)
+
+useGsap(section, () => {
+  // Starburst spins gently as the card travels through the viewport.
+  // Symmetric fromTo: rotation crosses 0 when the card is mid-viewport, so
+  // at reading position the star sits exactly as designed and its arms are
+  // never swung further out of the card's clip than the intended bleed.
+  gsap.fromTo(
+    '.register-star',
+    { rotation: -18 },
+    {
+      rotation: 18,
+      ease: 'none',
+      scrollTrigger: {
+        trigger: '.register-card',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: true,
+      },
+    },
+  )
+})
 
 // Early-bird deadline — anchored so the counter starts at 12 : 05 : 30
 // (days : hours : minutes) like the reference, then ticks down live.
@@ -45,9 +70,9 @@ const units = computed(() => [
 </script>
 
 <template>
-  <section id="register" class="pb-16 lg:pb-24">
+  <section id="register" ref="section" class="pb-16 lg:pb-24">
     <!-- Heading row: two-line title left, three-line blurb right. -->
-    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+    <div v-reveal class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
       <h2
         class="text-5xl font-bold uppercase leading-[1.15] tracking-tight text-ink sm:text-6xl lg:text-[4.5rem]"
       >
@@ -61,14 +86,15 @@ const units = computed(() => [
 
     <!-- Countdown card: starburst mark bleeds off the right edge. -->
     <div
-      class="relative mt-10 overflow-hidden rounded-4xl bg-surface px-6 py-12 sm:px-10 lg:mt-12 lg:px-14 lg:py-16"
+      v-reveal="{ y: 60 }"
+      class="register-card relative mt-10 overflow-hidden rounded-4xl bg-surface px-6 py-12 sm:px-10 lg:mt-12 lg:px-14 lg:py-16"
     >
       <!-- Blue starburst, right side, partially clipped by the card. -->
       <img
         src="/Vector.png"
         alt=""
         aria-hidden="true"
-        class="pointer-events-none absolute -bottom-10 -right-10 hidden h-60 w-auto select-none sm:block lg:-bottom-14 lg:-right-6 lg:h-80"
+        class="register-star pointer-events-none absolute -bottom-10 -right-10 hidden h-60 w-auto select-none will-change-transform sm:block lg:-bottom-14 lg:-right-6 lg:h-80"
       />
 
       <div class="relative z-10">
@@ -86,7 +112,9 @@ const units = computed(() => [
               :
             </span>
             <div class="flex flex-col items-center gap-4">
-              <span class="text-6xl font-light leading-none tracking-tight text-ink sm:text-7xl lg:text-[7.5rem]">
+              <span
+                class="text-6xl font-light leading-none tracking-tight text-ink sm:text-7xl lg:text-[7.5rem]"
+              >
                 {{ u.value }}
               </span>
               <span class="text-[10px] uppercase tracking-widest text-muted sm:text-xs">

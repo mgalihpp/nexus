@@ -38,16 +38,22 @@ const tickets: Ticket[] = [
 
 <template>
   <section id="tickets" class="pb-16 lg:pb-24">
-    <h2 class="text-3xl font-bold leading-none tracking-tight text-ink sm:text-4xl lg:text-5xl">
+    <h2
+      v-reveal
+      class="text-3xl font-bold leading-none tracking-tight text-ink sm:text-4xl lg:text-5xl"
+    >
       Ticket Options
     </h2>
 
     <!-- Three pricing cards -->
-    <div class="mt-10 grid gap-5 sm:grid-cols-3 lg:mt-12 lg:gap-6">
+    <div
+      v-reveal.stagger="{ y: 70, stagger: 0.15 }"
+      class="mt-10 grid gap-5 sm:grid-cols-3 lg:mt-12 lg:gap-6"
+    >
       <article
         v-for="t in tickets"
         :key="t.title"
-        class="flex min-h-80 flex-col rounded-3xl p-7 py-10 sm:p-8 sm:py-12 lg:min-h-115"
+        class="flex min-h-80 flex-col rounded-3xl p-7 py-10 transition-transform duration-300 ease-out hover:-translate-y-2 sm:p-8 sm:py-12 lg:min-h-115"
         :class="t.featured ? 'bg-[#1a49ff] text-white' : 'bg-canvas text-ink ring-1 ring-white/25'"
       >
         <h3 class="text-sm font-bold uppercase tracking-[0.15em] sm:text-base">{{ t.title }}</h3>
