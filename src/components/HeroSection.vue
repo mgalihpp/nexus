@@ -11,7 +11,7 @@ import CtaButton from './CtaButton.vue'
 <template>
   <section
     id="home"
-    class="relative flex flex-1 flex-col overflow-hidden rounded-4xl bg-surface px-6 py-9 sm:px-10 sm:py-12 lg:px-14 lg:pb-20 lg:pt-16"
+    class="relative flex flex-1 flex-col overflow-hidden rounded-4xl bg-surface px-6 py-9 sm:px-10 sm:py-12 lg:px-14 lg:pb-20 lg:pt-20"
   >
     <!-- Decorative hero graphic (element_hero.png). Centred on the right half,
          vertically around the middle so it overlaps the headline/body — exactly
@@ -20,7 +20,7 @@ import CtaButton from './CtaButton.vue'
       src="/element_hero.png"
       alt=""
       aria-hidden="true"
-      class="pointer-events-none absolute right-[15%] top-[66%] h-65 w-65 -translate-y-1/2 object-contain sm:h-90 sm:w-90 lg:h-100 lg:w-100"
+      class="pointer-events-none absolute right-[10%] top-[70%] h-65 w-65 -translate-y-1/2 object-contain sm:h-90 sm:w-90"
     />
 
     <!-- Foreground content sits above the graphic and fills the card height. -->
@@ -44,7 +44,7 @@ import CtaButton from './CtaButton.vue'
 
       <!-- Supporting copy — forced two-line break between sentences on sm+ to
            mirror the reference; flows naturally on small screens. -->
-      <p class="mt-8 max-w-205 text-base leading-relaxed text-muted sm:text-lg">
+      <p class="mt-8 max-w-205 text-base leading-relaxed text-ink sm:text-lg">
         Explore the cutting-edge innovations shaping the future of artificial intelligence.<br
           class="hidden sm:block"
         />
