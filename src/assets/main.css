@@ -1,0 +1,32 @@
+/* Syne — display/body typeface. Must precede other @imports per CSS spec. */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+
+/* Tailwind v4 entrypoint */
+@import 'tailwindcss';
+
+/* Design tokens exposed as Tailwind theme values so utilities like
+   `bg-surface` / `text-ink` / `font-display` stay in sync with the palette. */
+@theme {
+  --font-display: 'Syne', ui-sans-serif, system-ui, sans-serif;
+
+  --color-canvas: #000000; /* page background (pure black) */
+  --color-surface: #101113; /* hero card surface */
+  --color-ink: #ffffff; /* primary text */
+  --color-muted: #9ca3af; /* secondary / body copy */
+  --color-accent: #1d4ed8; /* electric blue accent */
+  --color-accent-bright: #2563eb;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-display);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
