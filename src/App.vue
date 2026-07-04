@@ -11,6 +11,11 @@ import HighlightGrid from './components/HighlightGrid.vue'
 import AgendaSection from './components/AgendaSection.vue'
 import SpeakersSection from './components/SpeakersSection.vue'
 import WhyAttendSection from './components/WhyAttendSection.vue'
+import TestimonialsSection from './components/TestimonialsSection.vue'
+import RegisterSection from './components/RegisterSection.vue'
+import TicketSection from './components/TicketSection.vue'
+import ContactSection from './components/ContactSection.vue'
+import SiteFooter from './components/SiteFooter.vue'
 </script>
 
 <template>
@@ -31,6 +36,11 @@ import WhyAttendSection from './components/WhyAttendSection.vue'
       <AgendaSection />
       <SpeakersSection />
       <WhyAttendSection />
+      <TestimonialsSection />
+      <RegisterSection />
+      <TicketSection />
+      <ContactSection />
+      <SiteFooter />
     </div>
   </div>
 </template>
